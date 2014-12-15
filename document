@@ -1,0 +1,11 @@
+1 nasm：编译汇编源代码，网上很多地方有下
+
+2  WinHex：作为windows系统中的写U盘工具，需要是正版（full version）才有写的权限，推荐：http://down.liangchan.net/WinHex_16.7.rar
+
+步骤：
+
+1 编译得到引导程序的机器代码。用命令行编译汇编源代码：name boot.asm -o boot.bin，其中boot.bin文件产生在命令行的当前目录中。
+
+2 将引导程序写入到U盘引导盘的第一个扇区的第一个字节处（后），即主引导区。插入U盘，用管理员权限打开WinHex.exe，tool->open disk 在physical media下选择当前插入的u盘，ok。 file->open 打开boot.bin。选中boot.bin的所有的十六进制数内容，复制。回到之前打开的u盘的那个页签，选中第一个十六进制数，edit->clipboard->write，弹出将在offset 0处写入， 确定。（注意，这种写入方式会破坏u盘里原有的内容，所以最好事先格式化u盘）。点击保存的图标，弹出一些其他警告框，都点确定。
+
+3 设置计算机bios boot优先从usb启动，重启计算机即可。
